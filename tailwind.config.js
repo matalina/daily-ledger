@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors')
 
 module.exports = {
     purge: ['./storage/framework/views/*.php', './resources/views/**/*.blade.php'],
@@ -6,9 +7,12 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                body: ['Coming Soon', ...defaultTheme.fontFamily.sans],
             },
         },
+        colors: {
+            ...colors,
+        }
     },
 
     variants: {
