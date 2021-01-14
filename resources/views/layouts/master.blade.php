@@ -19,13 +19,13 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-body box-border">
-        <header class="md:flex items-center border-b border-gray-600">
+        <header class="md:flex items-center border-b border-gray-600 mb-5">
             <div class="p-2">
                 <i class="fad fa-books fa-3x"></i>
                 <span class="font-body font-black text-5xl">Daily Ledger</span>
             </div>
-            @guest
             <div class="flex-1">
+            @guest
                 <form 
                     method="post"
                     action="{{ route('doLogin') }}"
@@ -34,12 +34,36 @@
                     @csrf
                     <x-form.input placeholder="email" name="email" type="email" class="border-gray-600 md:w-1/4" />
                     <x-form.input placeholder="password" name="password" type="password" class="border-gray-600 md:w-1/4"/>
-                    <x-button.submit class="bg-gray-100 border-gray-600 text-gray-600 block w-100">Login</x-button.submit>
+                    <x-button.submit class="bg-gray-100 border-gray-600 text-gray-600">Login</x-button.submit>
                     <x-button.link class="" href="{{ route('register') }}">Register</x-button.link>
                     <x-button.link class="" href="{{ route('password.request') }}">Lost Password?</x-button.link>
                 </form>
-            </div>
             @endguest
+            @auth
+                <div class="md:flex justify-end items-center p-2 text-center">
+                    <x-button.link>
+                        <i class="fad fa-calendar-alt fa-fw"></i>
+                        <span class="hidden md:inline">Calendar</span>
+                    </x-button.link>
+                    <x-button.link>
+                        <i class="fad fa-tasks fa-fw"></i> 
+                        <span class="hidden md:inline">Tasks</span>
+                    </x-button.link>
+                    <x-button.link>
+                        <i class="fad fa-tasks-alt fa-fw"></i> 
+                        <span class="hidden md:inline">Habits</span>
+                    </x-button.link>
+                    <x-button.link>
+                        <i class="fad fa-clipboard fa-fw"></i> 
+                        <span class="hidden md:inline">Notes</span>
+                    </x-button.link>
+                    <x-button.form action="{{ route('logout') }}" method="post">
+                        <i class="fad fa-sign-out fa-fw"></i> 
+                        <span class="hidden md:inline">Logout</span>
+                    </x-button.form>
+                </div>   
+            @endauth
+            </div>
         </header>
         <main>
             {{ $slot }}
