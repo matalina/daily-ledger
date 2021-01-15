@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-screen">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -18,7 +18,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-body box-border">
+    <body class="font-body box-border h-screen flex flex-col">
         <header class="md:flex items-center border-b border-gray-600 mb-5">
             <div class="p-2">
                 <i class="fad fa-books fa-3x"></i>
@@ -41,19 +41,23 @@
             @endguest
             @auth
                 <div class="md:flex justify-end items-center p-2 text-center">
-                    <x-button.link>
+                    <x-button.link href="{{ route('dashboard') }}">
+                        <i class="fad fa-tachometer-slow fa-fw"></i>
+                        <span class="hidden md:inline">Dashboard</span>
+                    </x-button.link>
+                    <x-button.link href="{{ route('dashboard.calendar') }}">
                         <i class="fad fa-calendar-alt fa-fw"></i>
                         <span class="hidden md:inline">Calendar</span>
                     </x-button.link>
-                    <x-button.link>
+                    <x-button.link  href="{{ route('dashboard.tasks') }}">
                         <i class="fad fa-tasks fa-fw"></i> 
                         <span class="hidden md:inline">Tasks</span>
                     </x-button.link>
-                    <x-button.link>
+                    <x-button.link href="{{ route('dashboard.habits') }}">
                         <i class="fad fa-tasks-alt fa-fw"></i> 
                         <span class="hidden md:inline">Habits</span>
                     </x-button.link>
-                    <x-button.link>
+                    <x-button.link href="{{ route('dashboard.notes') }}">
                         <i class="fad fa-clipboard fa-fw"></i> 
                         <span class="hidden md:inline">Notes</span>
                     </x-button.link>
@@ -65,8 +69,11 @@
             @endauth
             </div>
         </header>
-        <main>
+        <main class="flex-grow">
             {{ $slot }}
         </main>
+        <footer class="border-t border-gray-600 mt-5 p-2">
+            Footer
+        </footer>
     </body>
 </html>
