@@ -40,4 +40,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relationships
+    public function settings() 
+    {
+        return $this->hasOne(Settings::class);
+    }
+
+    // helpers
+    public function getSettings($setting)
+    {
+        if($this->settings == null) {
+            $settings = \Arr::dot((new Settings())->getDefaults());
+        }
+        else {
+            $settings = $this->settings->settings;
+        }
+        return $settings[$setting];
+    }
 }

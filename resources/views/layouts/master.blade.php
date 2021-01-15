@@ -21,8 +21,10 @@
     <body class="font-body box-border h-screen flex flex-col">
         <header class="md:flex items-center border-b border-gray-600 mb-5">
             <div class="p-2">
-                <i class="fad fa-books fa-3x"></i>
-                <span class="font-body font-black text-5xl">Daily Ledger</span>
+                <a href="{{ route('home') }}">
+                    <i class="fad fa-books fa-3x"></i>
+                    <span class="font-body font-black text-5xl">Daily Ledger</span>
+                </a>
             </div>
             <div class="flex-1">
             @guest
@@ -40,7 +42,7 @@
                 </form>
             @endguest
             @auth
-                <div class="md:flex justify-end items-center p-2 text-center">
+                <nav class="md:flex justify-end items-center p-2 text-center">
                     <x-button.link href="{{ route('dashboard') }}">
                         <i class="fad fa-tachometer-slow fa-fw"></i>
                         <span class="hidden md:inline">Dashboard</span>
@@ -61,13 +63,17 @@
                         <i class="fad fa-clipboard fa-fw"></i> 
                         <span class="hidden md:inline">Notes</span>
                     </x-button.link>
+                    <x-button.link href="{{ route('settings') }}">
+                        <i class="fad fa-cog fa-fw"></i>
+                        <span class="hidden md:inline">Settings</span>
+                    </x-button.link>
                     <x-button.form action="{{ route('logout') }}" method="post">
                         <i class="fad fa-sign-out fa-fw"></i> 
                         <span class="hidden md:inline">Logout</span>
                     </x-button.form>
                 </div>   
             @endauth
-            </div>
+            </nav>
         </header>
         <main class="flex-grow">
             {{ $slot }}

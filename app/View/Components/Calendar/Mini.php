@@ -1,19 +1,20 @@
 <?php
 
-namespace App\View\Components\page;
+namespace App\View\Components\Calendar;
 
 use Illuminate\View\Component;
 
-class title extends Component
+class Mini extends Component
 {
+    public $date;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($date)
     {
-        //
+        $this->date = $date;
     }
 
     /**
@@ -23,6 +24,6 @@ class title extends Component
      */
     public function render()
     {
-        return view('components.page.title');
+        return view('components.calendar.mini');
     }
 }

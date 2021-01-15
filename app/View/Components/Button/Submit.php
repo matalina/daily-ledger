@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\button;
+namespace App\View\Components\Button;
 
 use Illuminate\View\Component;
 
-class link extends Component
+class Submit extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class link extends Component
      */
     public function render()
     {
-        return view('components.button.link');
+        return view('components.button.submit');
     }
 }
